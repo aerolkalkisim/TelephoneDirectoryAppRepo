@@ -1,0 +1,123 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp", "TelephoneDirectoryApp\TelephoneDirectoryApp.csproj", "{38CCF8F3-0BE8-42F4-85F5-36021B300C6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelephoneDirectoryApp.Core", "TelephoneDirectoryApp.Core", "{64A46A82-54CB-4DF2-ACC8-1A777C12EE7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelephoneDirectoryApp.Data", "TelephoneDirectoryApp.Data", "{0C375A0F-C652-40AF-A519-8FB457DF5A8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelephoneDirectoryApp.Helper", "TelephoneDirectoryApp.Helper", "{8F90030F-3BDD-42BB-A6B1-61D1B769D98A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelephoneDirectoryApp.Manager", "TelephoneDirectoryApp.Manager", "{D30EACA0-03FF-45A0-B280-B6914CBC3CC4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelephoneDirectoryApp.Model", "TelephoneDirectoryApp.Model", "{BD04343D-291C-45F7-843E-D790E5F18C2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelephoneDirectoryApp.Presentation", "TelephoneDirectoryApp.Presentation", "{C228EFB7-5DD9-4B7C-839D-30BBECEFB4EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelephoneDirectoryApp.Core.Data", "TelephoneDirectoryApp.Core.Data", "{490C20CE-B0D6-4E96-B956-AA0934530B21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelephoneDirectoryApp.Core.Exception", "TelephoneDirectoryApp.Core.Exception", "{CD3F077B-D74E-41AB-9DAB-0D854A52B310}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Core.Data.BaseRepository", "TelephoneDirectoryApp.Core.Data.BaseRepository\TelephoneDirectoryApp.Core.Data.BaseRepository.csproj", "{F482370E-7862-44A7-9A3F-4DF38044F389}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Data.DataContext", "TelephoneDirectoryApp.Data.DataContext\TelephoneDirectoryApp.Data.DataContext.csproj", "{38496B55-A5A5-4972-BB19-D29631399A39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Model.Entity", "TelephoneDirectoryApp.Model.Entity\TelephoneDirectoryApp.Model.Entity.csproj", "{C24CA52E-73BF-4F03-AC2A-F0E5E4F0B6BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Core.Exception.Base", "TelephoneDirectoryApp.Core.Exception.Base\TelephoneDirectoryApp.Core.Exception.Base.csproj", "{882A58F7-8E3C-4B63-BC75-E3079AA82B3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Core.Exception.BusinessException", "TelephoneDirectoryApp.Core.Exception.BusinessException\TelephoneDirectoryApp.Core.Exception.BusinessException.csproj", "{8E2380D2-7200-45B2-AA02-677AD17C5E9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Core.Exception.DataException", "TelephoneDirectoryApp.Core.Exception.DataException\TelephoneDirectoryApp.Core.Exception.DataException.csproj", "{414C2235-D78C-4DD6-A173-97AE1EA3F379}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Data.Repository", "TelephoneDirectoryApp.Data.Repository\TelephoneDirectoryApp.Data.Repository.csproj", "{CF5DBE0D-BFD4-425B-801C-7EFF2EC9954F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Helper.Const", "TelephoneDirectoryApp.Helper.Const\TelephoneDirectoryApp.Helper.Const.csproj", "{D842150F-0A1A-40FA-9FD1-EC3C871B9ACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Model.WebModel", "TelephoneDirectoryApp.Model.WebModel\TelephoneDirectoryApp.Model.WebModel.csproj", "{8970CB2B-0F2E-494F-8A85-9A329BAC9355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Manager.Mapped", "TelephoneDirectoryApp.Manager.Mapped\TelephoneDirectoryApp.Manager.Mapped.csproj", "{79243F28-35EC-4575-9D90-E2EE1276897E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Manager.WebManager", "TelephoneDirectoryApp.Manager.WebManager\TelephoneDirectoryApp.Manager.WebManager.csproj", "{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38CCF8F3-0BE8-42F4-85F5-36021B300C6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38CCF8F3-0BE8-42F4-85F5-36021B300C6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38CCF8F3-0BE8-42F4-85F5-36021B300C6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38CCF8F3-0BE8-42F4-85F5-36021B300C6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F482370E-7862-44A7-9A3F-4DF38044F389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F482370E-7862-44A7-9A3F-4DF38044F389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F482370E-7862-44A7-9A3F-4DF38044F389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F482370E-7862-44A7-9A3F-4DF38044F389}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38496B55-A5A5-4972-BB19-D29631399A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38496B55-A5A5-4972-BB19-D29631399A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38496B55-A5A5-4972-BB19-D29631399A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38496B55-A5A5-4972-BB19-D29631399A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C24CA52E-73BF-4F03-AC2A-F0E5E4F0B6BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C24CA52E-73BF-4F03-AC2A-F0E5E4F0B6BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24CA52E-73BF-4F03-AC2A-F0E5E4F0B6BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C24CA52E-73BF-4F03-AC2A-F0E5E4F0B6BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{882A58F7-8E3C-4B63-BC75-E3079AA82B3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{882A58F7-8E3C-4B63-BC75-E3079AA82B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{882A58F7-8E3C-4B63-BC75-E3079AA82B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{882A58F7-8E3C-4B63-BC75-E3079AA82B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E2380D2-7200-45B2-AA02-677AD17C5E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E2380D2-7200-45B2-AA02-677AD17C5E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E2380D2-7200-45B2-AA02-677AD17C5E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E2380D2-7200-45B2-AA02-677AD17C5E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414C2235-D78C-4DD6-A173-97AE1EA3F379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414C2235-D78C-4DD6-A173-97AE1EA3F379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414C2235-D78C-4DD6-A173-97AE1EA3F379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414C2235-D78C-4DD6-A173-97AE1EA3F379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5DBE0D-BFD4-425B-801C-7EFF2EC9954F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5DBE0D-BFD4-425B-801C-7EFF2EC9954F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5DBE0D-BFD4-425B-801C-7EFF2EC9954F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5DBE0D-BFD4-425B-801C-7EFF2EC9954F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D842150F-0A1A-40FA-9FD1-EC3C871B9ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D842150F-0A1A-40FA-9FD1-EC3C871B9ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D842150F-0A1A-40FA-9FD1-EC3C871B9ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D842150F-0A1A-40FA-9FD1-EC3C871B9ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8970CB2B-0F2E-494F-8A85-9A329BAC9355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8970CB2B-0F2E-494F-8A85-9A329BAC9355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8970CB2B-0F2E-494F-8A85-9A329BAC9355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8970CB2B-0F2E-494F-8A85-9A329BAC9355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79243F28-35EC-4575-9D90-E2EE1276897E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79243F28-35EC-4575-9D90-E2EE1276897E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79243F28-35EC-4575-9D90-E2EE1276897E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79243F28-35EC-4575-9D90-E2EE1276897E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38CCF8F3-0BE8-42F4-85F5-36021B300C6B} = {C228EFB7-5DD9-4B7C-839D-30BBECEFB4EF}
+		{490C20CE-B0D6-4E96-B956-AA0934530B21} = {64A46A82-54CB-4DF2-ACC8-1A777C12EE7F}
+		{CD3F077B-D74E-41AB-9DAB-0D854A52B310} = {64A46A82-54CB-4DF2-ACC8-1A777C12EE7F}
+		{F482370E-7862-44A7-9A3F-4DF38044F389} = {490C20CE-B0D6-4E96-B956-AA0934530B21}
+		{38496B55-A5A5-4972-BB19-D29631399A39} = {0C375A0F-C652-40AF-A519-8FB457DF5A8E}
+		{C24CA52E-73BF-4F03-AC2A-F0E5E4F0B6BA} = {BD04343D-291C-45F7-843E-D790E5F18C2E}
+		{882A58F7-8E3C-4B63-BC75-E3079AA82B3D} = {CD3F077B-D74E-41AB-9DAB-0D854A52B310}
+		{8E2380D2-7200-45B2-AA02-677AD17C5E9D} = {CD3F077B-D74E-41AB-9DAB-0D854A52B310}
+		{414C2235-D78C-4DD6-A173-97AE1EA3F379} = {CD3F077B-D74E-41AB-9DAB-0D854A52B310}
+		{CF5DBE0D-BFD4-425B-801C-7EFF2EC9954F} = {0C375A0F-C652-40AF-A519-8FB457DF5A8E}
+		{D842150F-0A1A-40FA-9FD1-EC3C871B9ACF} = {8F90030F-3BDD-42BB-A6B1-61D1B769D98A}
+		{8970CB2B-0F2E-494F-8A85-9A329BAC9355} = {BD04343D-291C-45F7-843E-D790E5F18C2E}
+		{79243F28-35EC-4575-9D90-E2EE1276897E} = {D30EACA0-03FF-45A0-B280-B6914CBC3CC4}
+		{F48A39BF-B44A-4C76-8647-80B0D56ABDAA} = {D30EACA0-03FF-45A0-B280-B6914CBC3CC4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7813D44-0758-4078-8D41-F6834B19B969}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TelephoneDirectoryApp.Model.Entity\TelephoneDirectoryApp.Model.Entity.csproj" />
+    <ProjectReference Include="..\TelephoneDirectoryApp.Model.WebModel\TelephoneDirectoryApp.Model.WebModel.csproj" />
+  </ItemGroup>
+
+</Project>
