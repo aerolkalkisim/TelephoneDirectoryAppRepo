@@ -25,9 +25,10 @@ namespace TelephoneDirectoryApp
             services.AddControllersWithViews();
             services.AddEntityFrameworkNpgsql().AddDbContext<ProjectDbContext>(opt =>
         opt.UseNpgsql(Configuration.GetConnectionString("MyConection")));
-           
+
             //ToDo Repolar için  unitofwork kullan
-            services.AddScoped<IContactInformationTypeRepository, ContactInformationTypeRepository>();
+            // services.AddScoped<IContactInformationTypeRepository, ContactInformationTypeRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IContactInformationTypeManager, ContactInformationTypeManager>();
         }
 

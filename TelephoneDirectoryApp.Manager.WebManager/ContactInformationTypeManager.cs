@@ -8,21 +8,33 @@ namespace TelephoneDirectoryApp.Manager.WebManager
 {
     public class ContactInformationTypeManager : IContactInformationTypeManager
     {
-        private readonly IContactInformationTypeRepository _contactInformationTypeRepository;
+        //private readonly IContactInformationTypeRepository _contactInformationTypeRepository;
 
-        public ContactInformationTypeManager(IContactInformationTypeRepository contactInformationTypeRepository)
+        //public ContactInformationTypeManager(IContactInformationTypeRepository contactInformationTypeRepository)
+        //{
+        //    _contactInformationTypeRepository = contactInformationTypeRepository;
+        //}
+
+        private readonly IUnitOfWork _allRepo;
+
+        public ContactInformationTypeManager(IUnitOfWork allRepo)
         {
-            _contactInformationTypeRepository = contactInformationTypeRepository;
+            _allRepo = allRepo;
         }
 
         public bool AddType(ContactInformationTypeWM model)
         {
             try
             {
-                var result = _contactInformationTypeRepository.Create(new ContactInformationType()
+                var result = _allRepo.ContactInformationTypeRepository.Create(new ContactInformationType()
                 {
                     Name = model.Name
                 });
+
+                //var result = _contactInformationTypeRepository.Create(new ContactInformationType()
+                //{
+                //    Name = model.Name
+                //});
 
                 //Test
                 return true;
