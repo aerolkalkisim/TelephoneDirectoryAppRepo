@@ -8,7 +8,10 @@ namespace TelephoneDirectoryApp.Data.Repository
 {
     public interface IUnitOfWork : IDisposable
     {
+        IContactRepository ContactRepository { get; }
+        IContactInformationRepository ContactInformationRepository { get; }
         IContactInformationTypeRepository ContactInformationTypeRepository { get; }
+
         //Task<int> CommitAsync();
     }
 }

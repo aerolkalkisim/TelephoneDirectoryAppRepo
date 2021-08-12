@@ -7,8 +7,12 @@ using TelephoneDirectoryApp.Model.WebModel;
 
 namespace TelephoneDirectoryApp.Manager.WebManager
 {
-    public interface IContactInformationTypeManager
+    public interface IContactManager
     {
+        List<ContactWM> GetAllActiveContact();
+
+        bool AddContact(ContactWM model);
+
         bool AddType(ContactInformationTypeWM model);
     }
 }

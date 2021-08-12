@@ -29,7 +29,7 @@ namespace TelephoneDirectoryApp
             //ToDo Repolar için  unitofwork kullan
             // services.AddScoped<IContactInformationTypeRepository, ContactInformationTypeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IContactInformationTypeManager, ContactInformationTypeManager>();
+            services.AddScoped<IContactManager, ContactManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

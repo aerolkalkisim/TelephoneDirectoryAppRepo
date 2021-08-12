@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TelephoneDirectoryApp.Core.Exception.BusinessException\TelephoneDirectoryApp.Core.Exception.BusinessException.csproj" />
     <ProjectReference Include="..\TelephoneDirectoryApp.Data.Repository\TelephoneDirectoryApp.Data.Repository.csproj" />
+    <ProjectReference Include="..\TelephoneDirectoryApp.Manager.Mapped\TelephoneDirectoryApp.Manager.Mapped.csproj" />
     <ProjectReference Include="..\TelephoneDirectoryApp.Model.WebModel\TelephoneDirectoryApp.Model.WebModel.csproj" />
   </ItemGroup>
 
