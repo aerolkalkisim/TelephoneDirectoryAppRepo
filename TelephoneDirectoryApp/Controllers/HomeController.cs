@@ -25,9 +25,8 @@ namespace TelephoneDirectoryApp.Controllers
 
         public IActionResult Index()
         {
-            //ToDo: Typelar için seelad yapılacak
             //add Test
-            _contactInformationTypeManager.AddType(new ContactInformationTypeWM() { Name="Test" });
+            //_contactInformationTypeManager.AddType(new ContactInformationTypeWM() { Name="Test" });
             return View();
         }
 

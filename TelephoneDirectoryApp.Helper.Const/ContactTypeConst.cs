@@ -2,7 +2,7 @@
 
 namespace TelephoneDirectoryApp.Helper.Const
 {
-    public class ContactTypeConst
+    public static class ContactTypeConst
     {
         //E-mail Adresi, Konum
 
