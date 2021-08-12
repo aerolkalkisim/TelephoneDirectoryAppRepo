@@ -14,24 +14,19 @@ namespace TelephoneDirectoryApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IContactInformationTypeManager _contactInformationTypeManager;
+        //private readonly IContactInformationTypeManager _contactInformationTypeManager;
 
 
-        public HomeController(ILogger<HomeController> logger, IContactInformationTypeManager contactInformationTypeManager)
+        public HomeController(ILogger<HomeController> logger /*, IContactInformationTypeManager contactInformationTypeManager*/)
         {
             _logger = logger;
-            _contactInformationTypeManager = contactInformationTypeManager;
+            //_contactInformationTypeManager = contactInformationTypeManager;
         }
 
         public IActionResult Index()
         {
             //add Test
             //_contactInformationTypeManager.AddType(new ContactInformationTypeWM() { Name="Test" });
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 
