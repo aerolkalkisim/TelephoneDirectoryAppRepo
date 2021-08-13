@@ -20,6 +20,18 @@ namespace TelephoneDirectoryApp.Manager.Mapped
             }).ToList();
         }
 
+        public ContactWM MapToWM(Contact modelEntity)
+        {
+            return new ContactWM
+            {
+                Id = modelEntity.Id,
+                Name = modelEntity.Name,
+                Surname = modelEntity.Surname,
+                Firm = modelEntity.Firm
+
+            };
+        }
+
         public Contact MapToEntitiy(ContactWM modelWM)
         {
             return new Contact

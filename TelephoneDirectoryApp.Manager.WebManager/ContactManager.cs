@@ -28,6 +28,7 @@ namespace TelephoneDirectoryApp.Manager.WebManager
         #region Contact
 
         public List<ContactWM> GetAllActiveContact() => new ContactMapping().MapToWMList(_allRepo.ContactRepository.Get(X=>X.IsActive==true));
+        public ContactWM GetContactById(Guid id) => new ContactMapping().MapToWM(_allRepo.ContactRepository.GetFirst(X=>X.Id== id));
 
 
         public bool AddContact(ContactWM model)
@@ -136,6 +137,18 @@ namespace TelephoneDirectoryApp.Manager.WebManager
 
         #region Type
 
+        public List<ContactInformationTypeWM> GetAllActiveContactInfoType() {
+
+            return _allRepo.ContactInformationTypeRepository.Get().Select(x => new ContactInformationTypeWM
+            {
+                Id = x.Id,
+                Name = x.Name,
+
+            }).ToList();
+
+        } 
+
+
         public bool AddType(ContactInformationTypeWM model)
         {
             try
@@ -150,7 +163,6 @@ namespace TelephoneDirectoryApp.Manager.WebManager
             catch (Exception ex)
             {
                 throw new BusinessRuleException("Veritabanına kayıt sırasında hata oluştu.", "Contact Information Type kayıt edilirken hata meydana geldi.");
-
             }           
         }
 
