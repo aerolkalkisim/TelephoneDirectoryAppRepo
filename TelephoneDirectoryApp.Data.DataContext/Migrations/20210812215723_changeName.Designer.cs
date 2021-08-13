@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TelephoneDirectoryApp.Data.DataContext;
@@ -9,9 +10,10 @@ using TelephoneDirectoryApp.Data.DataContext;
 namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210812215723_changeName")]
+    partial class changeName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,13 +50,13 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ContactId")
+                    b.Property<Guid?>("ContactId")
                         .HasColumnType("uuid");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid>("TypeId")
+                    b.Property<Guid?>("TypeId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Value")
@@ -85,46 +87,40 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1787d027-77d2-4337-8c2c-8877cadf0d33"),
+                            Id = new Guid("a202f620-64c1-4011-aac0-b6b690d8f47c"),
                             Name = "Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("db9ce0e7-2e8e-4dcd-9b3d-466224cf6bac"),
+                            Id = new Guid("71be4c15-ab69-454a-b935-f7ca83013fe6"),
                             Name = "Ev Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("08ef8223-5583-45d9-b145-0fa4b7d1f117"),
+                            Id = new Guid("15dbc2a6-207f-4ed9-b0db-2e54b065a81c"),
                             Name = "İşyeri Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("3e3701bd-8083-4284-b27a-59dadb98f6d1"),
+                            Id = new Guid("36899bb1-ec30-4f33-9c5c-c8883a41ed16"),
                             Name = "Email"
                         },
                         new
                         {
-                            Id = new Guid("66563ba7-fa94-4a51-b3ed-ff9454f68502"),
+                            Id = new Guid("1f0ee246-ded3-4f9e-9ef0-f991eb8600d0"),
                             Name = "Konum"
                         });
                 });
 
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformation", b =>
                 {
-                    b.HasOne("TelephoneDirectoryApp.Model.Entity.Contact", "Contact")
+                    b.HasOne("TelephoneDirectoryApp.Model.Entity.Contact", null)
                         .WithMany("ContactInformations")
-                        .HasForeignKey("ContactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ContactId");
 
                     b.HasOne("TelephoneDirectoryApp.Model.Entity.ContactInformationType", "Type")
                         .WithMany()
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Contact");
+                        .HasForeignKey("TypeId");
 
                     b.Navigation("Type");
                 });

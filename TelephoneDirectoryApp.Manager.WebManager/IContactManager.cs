@@ -10,9 +10,17 @@ namespace TelephoneDirectoryApp.Manager.WebManager
     public interface IContactManager
     {
         List<ContactWM> GetAllActiveContact();
-
         bool AddContact(ContactWM model);
+        bool UpdateContact(ContactWM model);
+        bool DeleteContact(Guid id);
 
-        bool AddType(ContactInformationTypeWM model);
+
+        List<ContactInformationWM> GetActiveContactInformationsByContactId(Guid ContactId);
+        bool AddContactInformation(ContactInformationWM model);
+        bool UpdateInformation(ContactInformationWM model);
+        bool DeleteContactInformation(Guid id);
+
+        ///Typlar sabit kaslın diye düşünüldü.
+        //bool AddType(ContactInformationTypeWM model);
     }
 }

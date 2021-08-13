@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TelephoneDirectoryApp.Data.DataContext;
@@ -9,9 +10,10 @@ using TelephoneDirectoryApp.Data.DataContext;
 namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210812220753_editedDbClass")]
+    partial class editedDbClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,13 +50,13 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ContactId")
+                    b.Property<Guid?>("GatewayId")
                         .HasColumnType("uuid");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid>("TypeId")
+                    b.Property<Guid?>("TypeId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Value")
@@ -62,7 +64,7 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContactId");
+                    b.HasIndex("GatewayId");
 
                     b.HasIndex("TypeId");
 
@@ -85,46 +87,42 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1787d027-77d2-4337-8c2c-8877cadf0d33"),
+                            Id = new Guid("5a1110b0-30fc-4dfa-8d04-ddf4e7be8516"),
                             Name = "Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("db9ce0e7-2e8e-4dcd-9b3d-466224cf6bac"),
+                            Id = new Guid("8bf296d1-e56b-48b1-b860-dbef977ae7ee"),
                             Name = "Ev Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("08ef8223-5583-45d9-b145-0fa4b7d1f117"),
+                            Id = new Guid("d988229d-17b5-456f-9e52-4580c1101721"),
                             Name = "İşyeri Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("3e3701bd-8083-4284-b27a-59dadb98f6d1"),
+                            Id = new Guid("6fc6364c-2df7-4b58-a0ae-efd2d163c04e"),
                             Name = "Email"
                         },
                         new
                         {
-                            Id = new Guid("66563ba7-fa94-4a51-b3ed-ff9454f68502"),
+                            Id = new Guid("c22f1adc-fb92-4541-a7c1-cc09f06b3b57"),
                             Name = "Konum"
                         });
                 });
 
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformation", b =>
                 {
-                    b.HasOne("TelephoneDirectoryApp.Model.Entity.Contact", "Contact")
+                    b.HasOne("TelephoneDirectoryApp.Model.Entity.Contact", "Gateway")
                         .WithMany("ContactInformations")
-                        .HasForeignKey("ContactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GatewayId");
 
                     b.HasOne("TelephoneDirectoryApp.Model.Entity.ContactInformationType", "Type")
                         .WithMany()
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TypeId");
 
-                    b.Navigation("Contact");
+                    b.Navigation("Gateway");
 
                     b.Navigation("Type");
                 });

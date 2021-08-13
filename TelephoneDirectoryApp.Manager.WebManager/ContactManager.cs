@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TelephoneDirectoryApp.Core.Exception.BusinessException;
 using TelephoneDirectoryApp.Data.Repository;
 using TelephoneDirectoryApp.Manager.Mapped;
@@ -43,19 +44,94 @@ namespace TelephoneDirectoryApp.Manager.WebManager
             }
         }
 
-        public void UpdateContact()
+        public bool UpdateContact(ContactWM model)
         {
-
+            try
+            {
+                var result = _allRepo.ContactRepository.Update(new ContactMapping().MapToEntitiy(model));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //ToDo: File logger kurulabilir. İstenmediği için şu an için düşünülmüyor. Vakit bulabilirsem ekleyeceğim.
+                throw new BusinessRuleException("Veritabanına güncelleme sırasında hata oluştu.", "Contact güncellenirken beklenmeyen bir hata meydana geldi.");
+            }
         }
 
-        public void DeleteContact()
+        //SoftDelete
+        public bool DeleteContact(Guid id)
         {
-
+            try
+            {
+                var deletedContact = _allRepo.ContactRepository.GetFirst(x=>x.Id==id);
+                deletedContact.IsActive = false;
+                var result = _allRepo.ContactRepository.Update(deletedContact);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //ToDo: File logger kurulabilir. İstenmediği için şu an için düşünülmüyor. Vakit bulabilirsem ekleyeceğim.
+                throw new BusinessRuleException("Veritabanından silme işlemi sırasında hata oluştu.", "Contact silinirken hata meydana geldi.");
+            }
         }
-
 
         #endregion
 
+        #region ContactInformation
+
+        //ToDo: Detay getir ve detay ekle sil güncelle metotları eklenecek.
+
+
+        public List<ContactInformationWM> GetActiveContactInformationsByContactId(Guid ContactId) => new ContactMapping().MapToWMListForInformation(_allRepo.ContactInformationRepository.Get(X => X.IsActive == true && X.ContactId==ContactId).ToList());
+
+        public bool AddContactInformation(ContactInformationWM model)
+        {
+            try
+            {
+                var result = _allRepo.ContactInformationRepository.Create(new ContactMapping().MapToEnttiyForInformation(model));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessRuleException("Veritabanına kayıt sırasında hata oluştu.", "Contact Information kayıt edilirken hata meydana geldi.");
+
+            }
+        }
+
+
+        public bool UpdateInformation(ContactInformationWM model)
+        {
+            try
+            {
+                var result = _allRepo.ContactInformationRepository.Update(new ContactMapping().MapToEnttiyForInformation(model));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //ToDo: logger
+                throw new BusinessRuleException("Veritabanına güncelleme sırasında hata oluştu.", "Contact Information güncellenirken beklenmeyen bir hata meydana geldi.");
+            }
+        }
+
+
+        //SoftDelete
+        public bool DeleteContactInformation(Guid id)
+        {
+            try
+            {
+                var deletedContact = _allRepo.ContactInformationRepository.GetFirst(x => x.Id == id);
+                deletedContact.IsActive = false;
+                var result = _allRepo.ContactInformationRepository.Update(deletedContact);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //ToDo: logger
+                throw new BusinessRuleException("Veritabanından silme işlemi sırasında hata oluştu.", "Contact Information silinirken hata meydana geldi.");
+            }
+        }
+
+        #endregion
 
 
         #region Type
@@ -69,12 +145,6 @@ namespace TelephoneDirectoryApp.Manager.WebManager
                     Name = model.Name
                 });
 
-                //var result = _contactInformationTypeRepository.Create(new ContactInformationType()
-                //{
-                //    Name = model.Name
-                //});
-
-                //Test
                 return true;
             }
             catch (Exception ex)

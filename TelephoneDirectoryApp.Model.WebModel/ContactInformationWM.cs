@@ -4,9 +4,11 @@ namespace TelephoneDirectoryApp.Model.WebModel
 {
     public class ContactInformationWM
     {
-        public string Id { get; set; }
-        public ContactInformationTypeWM Type { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public Guid ContactId { get; set; }
+        public Guid TypeId { get; set; }
+        public string TypeName { get; set; }
+        public string Value { get; set; }
         public bool IsActive { get; set; }
     }
 }

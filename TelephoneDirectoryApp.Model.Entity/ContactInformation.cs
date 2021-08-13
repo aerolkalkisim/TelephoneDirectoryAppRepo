@@ -11,8 +11,13 @@ namespace TelephoneDirectoryApp.Model.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Guid Id { get; set; }
-        public ContactInformationType Type { get; set; }
-        public string Name { get; set; }
+        public Guid ContactId { get; set; }
+        public Guid TypeId { get; set; }
+        public string Value { get; set; }
         public bool IsActive { get; set; }
+        public virtual Contact Contact { get; set; }
+        public virtual ContactInformationType Type { get; set; }
+
+
     }
 }

@@ -25,7 +25,8 @@ namespace TelephoneDirectoryApp.Model.Entity
         public string Surname { get; set; }
         public string? Firm { get; set; }
         public bool IsActive { get; set; }
-        public List<ContactInformation> ContactInformations { get; set; }
+
+        public virtual ICollection<ContactInformation> ContactInformations { get; set; }
 
     }
 }
