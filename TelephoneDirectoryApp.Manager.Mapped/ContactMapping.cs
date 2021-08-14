@@ -51,9 +51,20 @@ namespace TelephoneDirectoryApp.Manager.Mapped
             {
                 Id = x.Id,
                 Value = x.Value,
-                TypeName = x.Type.Name
+                TypeName = x.ContactInformationType.Name
 
             }).ToList();
+        }
+
+        public ContactInformationWM MapToWMLForInformation(ContactInformation x)
+        {
+            return new ContactInformationWM
+            {
+                Id = x.Id,
+                Value = x.Value,
+                TypeId=x.TypeId
+
+            };
         }
 
 

@@ -44,13 +44,13 @@
                                     <div class="tab-pane active" id="nav-tab-card">
                                         <form role="form">
                                             <!--<div class="form-group">
-                                                <label><span class="hidden-xs">Type</span> </label>
-                                                <div class="form-inline">
-                                                    <select class="form-control" style="width:100%">
-                                                        <option>Seçiniz</option>
-                                                    </select>
-                                                </div>
-                                            </div>-->
+                                            <label><span class="hidden-xs">Type</span> </label>
+                                            <div class="form-inline">
+                                                <select class="form-control" style="width:100%">
+                                                    <option>Seçiniz</option>
+                                                </select>
+                                            </div>
+                                        </div>-->
                                             <!-- form-group.// -->
                                             <div class="form-group">
                                                 <label for="name">Ad</label>
@@ -176,6 +176,122 @@
             </div>
         </div><!-- Modal -->
 
+        <div class="hidden modal fade" id="infodetailModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" style="width: 635px !important;">
+                    <div class="modal-header">
+                        <div class="col-md-9">
+                            <h4>Kişi Bilgileri</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <!-- card -->
+                        <article class="card">
+                            <div class="card-body p-5">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="nav-tab-card">
+                                        <form role="form">
+
+
+                                            <div class="table-responsive">
+                                                <table id="infoDetail" class="table table-striped table-bordered" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Türü</th>
+                                                            <th>Bilgi</th>
+                                                            <th>İşlemler</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="infoDetailBody">
+
+                                                        @*<tr>
+                                                            <td>
+                                                                Telephone Numarası
+                                                            </td>
+
+                                                            <td>
+                                                                555 555 55 55
+                                                            </td>
+
+                                                            <td>
+                                                                <button class="btn btn-primary" type="button">Güncelle</button>
+                                                                <button class="btn btn-danger" type="button">Sil</button>
+                                                            </td>
+
+                                                        </tr>*@
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+
+
+                                        </form>
+                                    </div>
+                                </div> <!-- tab-content .// -->
+                            </div> <!-- card-body.// -->
+                        </article> <!-- card.// -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- Modal -->
+
+        <div class="hidden modal fade" id="contactInformationUpdateModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="col-md-9">
+
+                            <h4>Kişi Bilgisi Güncelle</h4>
+
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-body">
+                        <!-- card -->
+                        <article class="card">
+                            <div class="card-body p-5">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="nav-tab-card">
+                                        <form role="form">
+                                            <input type="hidden" id="updatedContactInfoId" name="updatedContactInfoId">
+                                            <div class="form-group">
+                                                <label><span class="hidden-xs">Tür</span> </label>
+                                                <div class="form-inline">
+                                                    <select name="updateInfoType" id="updateInfoType" class="form-control" style="width:100%; height:auto">
+                                                        <option>Seçiniz</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- form-group.// -->
+                                            <div class="form-group">
+                                                <label for="info">Bilgi</label>
+                                                <input type="text" class="form-control" name="updateInfoValue" id="updateInfoValue" placeholder="" required>
+                                            </div> <!-- form-group.// -->
+                                            <button class="subscribe btn btn-secondary btn-block" data-dismiss="modal" type="button"> Çıkış  </button>
+                                            <button id="contactInfoUpdateSave" class="subscribe btn btn-primary btn-block" type="button"> Kaydet  </button>
+                                        </form>
+                                    </div>
+                                </div> <!-- tab-content .// -->
+                            </div> <!-- card-body.// -->
+                        </article> <!-- card.// -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- Modal -->
+
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
@@ -212,7 +328,7 @@
                                         <td>
                                             <button class="btn btn-primary" onclick="getContactInfoForupdateModal('@item.Id')" type="button">Güncelle</button>
                                             <button class="btn btn-danger" onclick="deleteContact('@item.Id')" type="button">Sil</button>
-                                            <button class="btn btn-info" type="button">Detay Görüntüle</button>
+                                            <button class="btn btn-info" onclick="showContactInfoDetail('@item.Id')" type="button">Detay Görüntüle</button>
                                             <button class="btn btn-warning" type="button" onclick="getContactDetailForupdateModal('@item.Id')">Detay Ekle</button>
                                         </td>
                                     </tr>
@@ -248,12 +364,20 @@
 
     <script>
 
+        var infotable;
+
         $(document).ready(function () {
 
             $('#example').DataTable({
                 select: false,
                 order: [[0, "asc"]]
             });
+
+            infotable = $('#infoDetail').DataTable({
+                select: false,
+                order: [[0, "asc"]]
+            });
+
 
             $('#myModal').on('hidden.bs.modal', function () {
                 $(this).find('form').trigger('reset');
@@ -449,6 +573,67 @@
                 });
             });
 
+            $("#contactInfoUpdateSave").click(function () {
+
+                var ContactInfoId = $("#updatedContactInfoId").val();
+                var infoTypeId = $("#updateInfoType").val();
+                var infoValue = $("#updateInfoValue").val();
+
+                if (!infoType.length || !infoValue.length) {
+                    Swal.fire({
+                        icon: 'warning',
+                        text: 'Tür ve Bilgi alanları boş geçilemez! Lütfen doldurun.',
+                    });
+
+                    return;
+                }
+
+                var postModel = { Id: ContactInfoId, TypeId: infoTypeId, Value: infoValue }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Contact/UpdateContactInformation',
+                    data: postModel,
+                    success: function (status) {
+
+                        if (status) {
+
+                            toogleModel("contactInformationUpdateModal");
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Kayıt Başarılı!',
+                                text: 'Bilgi güncelleme işlemi başarılı.',
+                                showConfirmButton: false,
+                            });
+
+                            setTimeout(() => location.reload(), 800);
+                        }
+                        else {
+
+                            toogleModel("contactInformationUpdateModal");
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Beklenmeyen bir hata ile karşılaşıldı. Lütfen Gerekli alanları doldurduğunuzdan emin olun.',
+                            });
+                        }
+
+                    },
+                    error: function () {
+
+                        toogleModel("contactInformationUpdateModal");
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Beklenmeyen bir hata ile karşılaşıldı.',
+                        });
+                    }
+                });
+            });
+
         });
 
         function toogleModel(modalId) {
@@ -550,12 +735,10 @@
                 url: '/Contact/GetAllContactType',
                 success: function (contactTypeData) {
 
-                    console.log(contactTypeData);
-
                     for (let i = 0; i < contactTypeData.length; ++i) {
-                     
+
                         $('#infoType').append(`<option value="${contactTypeData[i].id}">${contactTypeData[i].name}</option>`);
-                    }                 
+                    }
 
                     $('#contactInformationAddModal').modal('show');
 
@@ -568,6 +751,168 @@
                     });
                 }
             });
+        }
+
+        function showContactInfoDetail(contactId) {
+
+            var postModel = { ContactId: contactId }
+
+            $.ajax({
+                type: "GET",
+                url: '/Contact/GetContactInformationByContactId',
+                data: postModel,
+                success: function (contactTypeData) {
+
+                    //$('#infoDetailBody').remove();
+                    infotable.clear()
+                        .draw();
+
+                    for (let i = 0; i < contactTypeData.length; ++i) {
+
+                        //$('#infoDetailBody').append(` <tr> <td> Telephone Numarası </td><td> 555 555 55 55 </td><td> <button class="btn btn-primary" type="button">Güncelle</button> <button class="btn btn-danger" type="button">Sil</button> </td></tr>`);
+
+                        infotable.row.add([
+                            contactTypeData[i].typeName,
+                            contactTypeData[i].value,
+                            '<button class="btn btn-primary" type="button" onclick="updateGetContactInfo(\'' + contactTypeData[i].id + '\')" >Güncelle</button> <button class="btn btn-danger" onclick="deleteContactInfo(\'' + contactTypeData[i].id + '\')" type="button">Sil</button>'
+                        ]).draw(false);
+
+                    }
+
+                    $('#infodetailModal').modal('show');
+
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Kayıt getirilirken beklenmeyen bir hata ile karşılaşıldı.',
+                    });
+                }
+            });
+
+
+
+        }
+
+        function updateGetContactInfo(contactInfoId) {
+
+            $('#infodetailModal').modal('toggle');
+
+            $("#updatedContactInfoId").val(contactInfoId);
+
+            var postModel = { ContactInfoId: contactInfoId }
+
+            $.ajax({
+                type: "GET",
+                url: '/Contact/GetContactInformationByContactInfoId',
+                data: postModel,
+                success: function (contactInfoData) {
+
+                    $("#updateInfoValue").val(contactInfoData.value);
+
+                    $.ajax({
+                        type: "GET",
+                        url: '/Contact/GetAllContactType',
+                        success: function (contactTypeData) {
+
+                            for (let i = 0; i < contactTypeData.length; ++i) {                                
+
+                                if (contactTypeData[i].id == contactInfoData.typeId) {
+
+                                    $('#updateInfoType').append(`<option value="${contactTypeData[i].id}" selected>${contactTypeData[i].name}</option>`);
+
+                                }
+                                else {
+
+                                    $('#updateInfoType').append(`<option value="${contactTypeData[i].id}">${contactTypeData[i].name}</option>`);
+
+                                }
+
+                            }
+
+                            $('#contactInformationUpdateModal').modal('show');
+
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Kayıt getirilirken beklenmeyen bir hata ile karşılaşıldı.',
+                            });
+                            return;
+                        }
+                    });
+
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Kayıt getirilirken beklenmeyen bir hata ile karşılaşıldı.',
+                    });
+                }
+            });
+        }
+
+        function deleteContactInfo(contactInfoId) {
+
+            $('#infodetailModal').modal('toggle');
+
+            Swal.fire({
+                title: 'Kaydı silmek istediğinden emin misin?',
+                text: "Bu işlemi yaparsanız geri alamazsınız!",
+                icon: 'warning',
+                showCancelButton: true,
+                //confirmButtonColor: '#3085d6',
+                //cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, sil!',
+                cancelButtonText: 'Hayır'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    var postModel = { ContactInfoId: contactInfoId }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Contact/DeleteContactInformation',
+                        data: postModel,
+                        success: function (status) {
+
+                            if (status) {
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'İşlem Başarılı!',
+                                    text: 'Kayıt kaldırıldı.',
+                                    showConfirmButton: false,
+                                });
+
+                            }
+                            else {
+
+
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Beklenmeyen bir hata ile karşılaşıldı.',
+                                });
+                            }
+
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Beklenmeyen bir hata ile karşılaşıldı.',
+                            });
+                        }
+                    });
+
+
+                }
+            })
+
         }
 
     </script>

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TelephoneDirectoryApp.Core.Data.BaseRepository;
 using TelephoneDirectoryApp.Data.DataContext;
@@ -13,5 +15,12 @@ namespace TelephoneDirectoryApp.Data.Repository
         {
                 
         }
+
+        public List<ContactInformation> GetContactInformationWithTypeByContactId(Guid ContactId)
+        {
+          var result = base.dataContext.ContactInformations.Include(x => x.ContactInformationType).Where(x=>x.ContactId==ContactId && x.IsActive==true).ToList();
+            return result;
+        }
+
     }
 }

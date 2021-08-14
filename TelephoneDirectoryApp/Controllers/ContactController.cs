@@ -73,9 +73,6 @@ namespace TelephoneDirectoryApp.Controllers
         }
 
 
-
-
-
         [HttpGet]
         public JsonResult GetAllContactType()
         {
@@ -94,10 +91,34 @@ namespace TelephoneDirectoryApp.Controllers
             return new JsonResult(_contactManager.AddContactInformation(model));
         }
 
+        [HttpPost]
+        public JsonResult UpdateContactInformation(ContactInformationWM model)
+        {
+
+            if (string.IsNullOrEmpty(model.TypeId.ToString()) || string.IsNullOrEmpty(model.Value))
+            {
+                return new JsonResult(false);
+            }
+
+            return new JsonResult(_contactManager.UpdateInformation(model));
+        }
+
         [HttpGet]
         public JsonResult GetContactInformationByContactId(string ContactId)
         {
             return new JsonResult(_contactManager.GetActiveContactInformationsByContactId(new Guid(ContactId)));
+        }
+
+        [HttpGet]
+        public JsonResult GetContactInformationByContactInfoId(string ContactInfoId)
+        {
+            return new JsonResult(_contactManager.GetContactInformationsByContactInfoId(new Guid(ContactInfoId)));
+        }
+
+        [HttpPost]
+        public JsonResult DeleteContactInformation(string contactInfoId)
+        {
+            return new JsonResult(_contactManager.DeleteContactInformation(new Guid(contactInfoId)));
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TelephoneDirectoryApp.Data.DataContext;
@@ -9,9 +10,10 @@ using TelephoneDirectoryApp.Data.DataContext;
 namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210814125504_foreignkey")]
+    partial class foreignkey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,42 +77,37 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ContactInformationTypeId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ContactInformationTypeId");
 
                     b.ToTable("ContactInformationType");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("488fc82b-c837-46cd-8f1d-8eeb4a7fa802"),
+                            Id = new Guid("6ab88f0e-d7b2-4602-9a3a-98c21e5fb22d"),
                             Name = "Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("c10d034c-c94d-4c37-8675-4cef675b199b"),
+                            Id = new Guid("4f6bbf98-76c7-42b3-b8ac-a1830c8f46a6"),
                             Name = "Ev Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("7d0fd2b4-9783-4aae-ad76-a4ba4fae7e1e"),
+                            Id = new Guid("aeefcf5b-6635-4e9a-8091-6b3bf658f896"),
                             Name = "İşyeri Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("7e653d32-2d9e-406a-9c3b-a9dbd3f66e82"),
+                            Id = new Guid("e6cf5342-dd46-4e41-85d3-a12c9287bece"),
                             Name = "Email"
                         },
                         new
                         {
-                            Id = new Guid("7aae9cfb-7810-4fc5-ad50-8498ba356282"),
+                            Id = new Guid("bd4fa31e-fb8b-4044-867d-3c98ff226c1b"),
                             Name = "Konum"
                         });
                 });
@@ -123,7 +120,7 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TelephoneDirectoryApp.Model.Entity.ContactInformationType", "ContactInformationType")
+                    b.HasOne("TelephoneDirectoryApp.Model.Entity.ContactInformationType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -131,24 +128,12 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 
                     b.Navigation("Contact");
 
-                    b.Navigation("ContactInformationType");
-                });
-
-            modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformationType", b =>
-                {
-                    b.HasOne("TelephoneDirectoryApp.Model.Entity.ContactInformationType", null)
-                        .WithMany("ContactInformationTypes")
-                        .HasForeignKey("ContactInformationTypeId");
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.Contact", b =>
                 {
                     b.Navigation("ContactInformations");
-                });
-
-            modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformationType", b =>
-                {
-                    b.Navigation("ContactInformationTypes");
                 });
 #pragma warning restore 612, 618
         }

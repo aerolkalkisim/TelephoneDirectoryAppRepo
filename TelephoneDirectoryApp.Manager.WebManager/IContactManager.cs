@@ -22,6 +22,7 @@ namespace TelephoneDirectoryApp.Manager.WebManager
         bool DeleteContactInformation(Guid id);
 
         List<ContactInformationTypeWM> GetAllActiveContactInfoType();
+        ContactInformationWM GetContactInformationsByContactInfoId(Guid ContactInfoId);
 
         ///Typlar sabit kaslın diye düşünüldü.
         //bool AddType(ContactInformationTypeWM model);

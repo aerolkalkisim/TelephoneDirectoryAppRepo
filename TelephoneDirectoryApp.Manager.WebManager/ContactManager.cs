@@ -83,7 +83,8 @@ namespace TelephoneDirectoryApp.Manager.WebManager
         //ToDo: Detay getir ve detay ekle sil güncelle metotları eklenecek.
 
 
-        public List<ContactInformationWM> GetActiveContactInformationsByContactId(Guid ContactId) => new ContactMapping().MapToWMListForInformation(_allRepo.ContactInformationRepository.Get(X => X.IsActive == true && X.ContactId==ContactId).ToList());
+        public List<ContactInformationWM> GetActiveContactInformationsByContactId(Guid ContactId) => new ContactMapping().MapToWMListForInformation(_allRepo.ContactInformationRepository.GetContactInformationWithTypeByContactId(ContactId));
+        public ContactInformationWM GetContactInformationsByContactInfoId(Guid ContactInfoId) => new ContactMapping().MapToWMLForInformation(_allRepo.ContactInformationRepository.GetFirst(x=>x.Id==ContactInfoId));
 
         public bool AddContactInformation(ContactInformationWM model)
         {
@@ -104,7 +105,12 @@ namespace TelephoneDirectoryApp.Manager.WebManager
         {
             try
             {
-                var result = _allRepo.ContactInformationRepository.Update(new ContactMapping().MapToEnttiyForInformation(model));
+                var updatedContact = _allRepo.ContactInformationRepository.GetFirst(x => x.Id == model.Id);
+                updatedContact.TypeId = model.TypeId;
+                updatedContact.Value = model.Value;
+
+                //var result = _allRepo.ContactInformationRepository.Update(new ContactMapping().MapToEnttiyForInformation(model));
+                var result = _allRepo.ContactInformationRepository.Update(updatedContact);
                 return true;
             }
             catch (Exception ex)

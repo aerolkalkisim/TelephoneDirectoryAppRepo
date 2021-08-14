@@ -8,5 +8,6 @@ namespace TelephoneDirectoryApp.Data.Repository
 {
     public interface IContactInformationRepository : IEntityRepository<ContactInformation>
     {
+        List<ContactInformation> GetContactInformationWithTypeByContactId(Guid ContactId);
     }
 }
