@@ -2,20 +2,325 @@
     ViewData["Title"] = "Report";
 }
 
+@model List<TelephoneDirectoryApp.Model.WebModel.ReportRequestWM>
+
+@section CSS{
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap4.min.css" rel="stylesheet" />
+}
+
 
 <div class="panel-header panel-header-sm">
 </div>
 <div class="content">
     <div class="row">
-        <div class="col-md-12">
-            <div class="card ">
-                <div class="card-header ">
-                    Raporlar
+
+        <div class="hidden modal fade" id="reportDetailModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" style="width: 635px !important;">
+                    <div class="modal-header">
+                        <div class="col-md-11">                           
+                            <h4> <label id="modalReportStatus" for="status"></label></h4>
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <!-- card -->
+                        <article class="card">
+                            <div class="card-body p-5">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="nav-tab-card">
+                                        <form role="form">
+
+
+
+                                            <div class="table-responsive" @*style="visibility:hidden"*@>
+                                                <table id="infoDetail" class="table table-striped table-bordered" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Konum</th>
+                                                            <th>Kişi sayısı</th>
+                                                            <th>Telefon sayısı</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="infoDetailBody">
+
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+
+                                        </form>
+                                    </div>
+                                </div> <!-- tab-content .// -->
+                            </div> <!-- card-body.// -->
+                        </article> <!-- card.// -->
+                    </div>
                 </div>
-                <div class="card-body ">
-                    <div id="test" class="map"></div>
+            </div>
+        </div><!-- Modal -->
+
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6"><h4 class="card-title"> Raporlar</h4></div>
+                        <div class="col-md-6"><button class="btn btn-success" type="button" style="float:right" onclick="createReportRequest()">Rapor Oluştur</button></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Rapor Id</th>
+                                    <th>İstek Gönderildiği Tarih</th>
+                                    <th>Durumu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.Id
+                                        </td>
+                                        <td>
+                                            @item.RequestDate
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-warning" type="button" onclick="getReportStatus('@item.Id')">Raporu Görüntüle</button>
+                                            <button class="btn btn-danger" onclick="deleteReportRequest('@item.Id')" type="button">Rapor Kaydını Sil</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Rapor Id</th>
+                                    <th>İstek Gönderildiği Tarih</th>
+                                    <th>Durumu</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
+
+
+@section Scripts{
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+        var infotable;
+
+        $(document).ready(function () {
+
+            $('#example').DataTable({
+                select: false,
+                order: [[1, "asc"]]
+            });
+
+            infotable = $('#infoDetail').DataTable({
+                select: false,
+                order: [[0, "asc"]]
+            });
+
+        });
+
+        function toogleModel(modalId) {
+            $('#' + modalId + '').modal('toggle');
+            $('.modal-backdrop').remove();
+        }
+
+        function createReportRequest() {
+
+
+            Swal.fire({
+                title: 'Rapor oluşturmak istediğinden emin misin?',
+                text: "Bu işlemi yaptığınızda işlem sıraya alınır. Raporun durumunu sayfadaki Raporu Görüntüle butonuna tıklayarak takip edebilirsiniz. ",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Evet, Oluştur!',
+                cancelButtonText: 'Hayır'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Report/CreateReportRequest',
+                        success: function (status) {
+
+                            if (status) {
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'İşlem Başarılı!',
+                                    text: 'Rapor işlem sırasına alındı',
+                                    showConfirmButton: false,
+                                });
+
+                                setTimeout(() => location.reload(), 500);
+                            }
+                            else {
+
+
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Beklenmeyen bir hata ile karşılaşıldı.',
+                                });
+                            }
+
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Beklenmeyen bir hata ile karşılaşıldı.',
+                            });
+                        }
+                    });
+
+
+                }
+            })
+
+        }
+
+        function deleteReportRequest(reportId) {
+
+            Swal.fire({
+                title: 'Kaydı silmek istediğinden emin misin?',
+                text: "Bu işlemi yaparsan geri alamazsın!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Evet, sil!',
+                cancelButtonText: 'Hayır'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    var postModel = { ReportId: reportId }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Report/DeleteReportRequest',
+                        data: postModel,
+                        success: function (status) {
+
+                            if (status) {
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'İşlem Başarılı!',
+                                    text: 'Rapor listeden kaldırıldı.',
+                                    showConfirmButton: false,
+                                });
+
+                                setTimeout(() => location.reload(), 500);
+                            }
+                            else {
+
+
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Beklenmeyen bir hata ile karşılaşıldı.',
+                                });
+                            }
+
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Beklenmeyen bir hata ile karşılaşıldı.',
+                            });
+                        }
+                    });
+
+
+                }
+            })
+        }
+
+        function getReportStatus(reportId) {
+
+            var postModel = { ReportId: reportId }
+
+            $.ajax({
+                type: "GET",
+                url: '/Report/GetReportDetail',
+                data: postModel,
+                success: function (data) {
+
+                    infotable.clear()
+                        .draw();
+
+                    if (data.status) {
+
+                        $("#modalReportStatus").text(reportId + " Numaralı Rapor Durumu: " + data.statusDescription);
+
+                        console.log(data.result);
+
+                        for (let i = 0; i < data.result.length; ++i) {
+
+                            infotable.row.add([
+                                data.result[i].location,
+                                data.result[i].contactCount,
+                                data.result[i].telephoneNumberCount,
+
+                            ]).draw(false);
+
+                        }
+
+                    }
+                    else {
+
+                        $("#modalReportStatus").text(reportId + " Numaralı Rapor Durumu: " + data.statusDescription);
+
+                    }
+
+                    $('#reportDetailModal').modal('show');
+
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Rapor bilgisi getirilirken beklenmeyen bir hata ile karşılaşıldı.',
+                    });
+                }
+            });
+
+
+
+        }
+
+
+    </script>
+
+}

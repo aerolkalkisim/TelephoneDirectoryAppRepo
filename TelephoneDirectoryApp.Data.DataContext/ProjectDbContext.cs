@@ -23,7 +23,7 @@ namespace TelephoneDirectoryApp.Data.DataContext
                          new ContactInformationType { Id = Guid.NewGuid(), Name = ContactTypeConst.HomeTelephoneNumber },
                          new ContactInformationType { Id = Guid.NewGuid(), Name = ContactTypeConst.BusinessTelephoneNumber },
                          new ContactInformationType { Id = Guid.NewGuid(), Name = ContactTypeConst.Email },
-                         new ContactInformationType { Id = Guid.NewGuid(), Name = ContactTypeConst.Konum }
+                         new ContactInformationType { Id = Guid.NewGuid(), Name = ContactTypeConst.Location }
                          );
         }
     }

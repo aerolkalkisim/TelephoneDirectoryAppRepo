@@ -9,6 +9,7 @@ namespace TelephoneDirectoryApp.Model.WebModel
         public Guid Id { get; set; }
         public DateTime RequestDate { get; set; }
         public bool Status { get; set; } = false;
+        public DateTime StatusChangeDate { get; set; }
         public string? Result { get; set; }
         public bool IsActive { get; set; }
     }

@@ -10,6 +10,6 @@ namespace TelephoneDirectoryApp.Helper.Const
         public const string HomeTelephoneNumber = "Ev Telefon Numarası";
         public const string BusinessTelephoneNumber = "İşyeri Telefon Numarası";
         public const string Email = "Email";
-        public const string Konum = "Konum";
+        public const string Location = "Konum";
     }
 }

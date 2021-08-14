@@ -22,5 +22,11 @@ namespace TelephoneDirectoryApp.Data.Repository
             return result;
         }
 
+        public List<ContactInformation> GetAllActiveContactInformationWithType()
+        {
+            var result = base.dataContext.ContactInformations.Include(x => x.ContactInformationType).Where(x=>x.IsActive == true).ToList();
+            return result;
+        }
+
     }
 }

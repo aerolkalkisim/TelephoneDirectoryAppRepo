@@ -155,7 +155,7 @@
                                                 <label><span class="hidden-xs">Tür</span> </label>
                                                 <div class="form-inline">
                                                     <select name="infoType" id="infoType" class="form-control" style="width:100%; height:auto">
-                                                        <option>Seçiniz</option>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -734,6 +734,10 @@
                 type: "GET",
                 url: '/Contact/GetAllContactType',
                 success: function (contactTypeData) {
+
+                    $("#infoType option").remove();
+                    $('#infoType').append(`<option>Seçiniz</option>`);
+
 
                     for (let i = 0; i < contactTypeData.length; ++i) {
 

@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using TelephoneDirectoryApp.Core.Exception.BusinessException;
 using TelephoneDirectoryApp.Data.Repository;
+using TelephoneDirectoryApp.Helper.Const;
 using TelephoneDirectoryApp.Manager.Mapped;
 using TelephoneDirectoryApp.Model.Entity;
 using TelephoneDirectoryApp.Model.WebModel;
@@ -18,20 +21,33 @@ namespace TelephoneDirectoryApp.Manager.WebManager
             _allRepo = allRepo;
         }
 
-        public List<ReportRequestWM> GetAllActiveContact() => new ReportMapping().MapToWMList(_allRepo.ReportRequestRepository.Get(X => X.IsActive == true));
+        public List<ReportRequestWM> GetAllActiveReport() => new ReportMapping().MapToWMList(_allRepo.ReportRequestRepository.Get(x => x.IsActive == true));
 
-        public string GetReportRequestResultById(Guid id)
+        public ReportResultWM GetReportRequestResultById(Guid id)
 
         {
            var reportResult = _allRepo.ReportRequestRepository.GetFirst(x => x.Id == id);
 
             if (reportResult.Status)
             {
-                return reportResult.Result;
+
+                //TODO: Json olarak result kolonuna basılacak ve sonuç buradan bir modelle alınacak
+                return new ReportResultWM()
+                {
+                    Result = JsonConvert.DeserializeObject<List<ReportResultDetailWM>>(reportResult.Result),
+                    StatusDescription = "Tamamlandı.",
+                    Status = true
+                };
+
             }
             else
             {
-                return "Rapor hazırlanıyor.";
+                return new ReportResultWM()
+                {
+                    StatusDescription = "Hazırlanıyor.",
+                    Status = false
+                };
+
             }
 
         }
@@ -57,15 +73,36 @@ namespace TelephoneDirectoryApp.Manager.WebManager
             }
         }
 
-        public bool UpdateContactForResult(Guid id)
+        public bool CalculateReportForResult(Guid id)
         {
             try
             {
+                List<ReportResultDetailWM> reportResultList = new List<ReportResultDetailWM>();
+
+                var contactInformation = _allRepo.ContactInformationRepository.GetAllActiveContactInformationWithType();
+                var location = contactInformation.Where(x => x.ContactInformationType.Name == ContactTypeConst.Location).Select(x=>x.Value).Distinct().ToList();
+
+
+                foreach (var item in location)
+                {
+                    var contactLocation = contactInformation.Where(x => x.Value == item).Select(x=>x.ContactId).Distinct().ToList();
+                    var contactTelephoneNumber = contactInformation.Where(x => x.ContactInformationType.Name == ContactTypeConst.TelephoneNumber).Select(x => x.ContactId).Distinct().ToList();
+
+                    ReportResultDetailWM reportResult = new ReportResultDetailWM()
+                    {
+                        Location = item,
+                        ContactCount = contactInformation.Where(x => x.Value == item).Count(),
+                        TelephoneNumberCount = contactLocation.Intersect(contactTelephoneNumber).Count()
+                    };
+
+                    reportResultList.Add(reportResult);
+                }             
+
                 var updatedContact = _allRepo.ReportRequestRepository.GetFirst(x => x.Id == id);
                 updatedContact.Status = true;
 
                 //ToDo result hesaplanacak
-                updatedContact.Result = "";
+                updatedContact.Result = JsonConvert.SerializeObject(reportResultList);
 
                 var result = _allRepo.ReportRequestRepository.Update(updatedContact);
                 return true;
