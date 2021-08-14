@@ -11,6 +11,7 @@ namespace TelephoneDirectoryApp.Data.DataContext
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<ContactInformation> ContactInformations { get; set; }
         public DbSet<ContactInformationType> ContactInformationType { get; set; }
+        public DbSet<ReportRequest> ReportRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

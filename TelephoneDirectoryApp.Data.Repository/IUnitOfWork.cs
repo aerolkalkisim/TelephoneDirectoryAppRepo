@@ -11,6 +11,7 @@ namespace TelephoneDirectoryApp.Data.Repository
         IContactRepository ContactRepository { get; }
         IContactInformationRepository ContactInformationRepository { get; }
         IContactInformationTypeRepository ContactInformationTypeRepository { get; }
+        IReportRequestRepository ReportRequestRepository { get; }
 
         //Task<int> CommitAsync();
     }

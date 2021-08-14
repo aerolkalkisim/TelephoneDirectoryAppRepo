@@ -14,6 +14,7 @@ namespace TelephoneDirectoryApp.Data.Repository
         private ContactRepository _contactRepository;
         private ContactInformationRepository _contactInformationRepository;
         private ContactInformationTypeRepository _contactInformationTypeRepository;
+        private ReportRequestRepository _reportRequestRepository;
 
         public UnitOfWork(ProjectDbContext context)
         {
@@ -23,6 +24,7 @@ namespace TelephoneDirectoryApp.Data.Repository
         public IContactRepository ContactRepository => _contactRepository = _contactRepository ?? new ContactRepository(_context);
         public IContactInformationRepository ContactInformationRepository => _contactInformationRepository = _contactInformationRepository ?? new ContactInformationRepository(_context);
         public IContactInformationTypeRepository ContactInformationTypeRepository => _contactInformationTypeRepository = _contactInformationTypeRepository ?? new ContactInformationTypeRepository(_context);
+        public IReportRequestRepository ReportRequestRepository => _reportRequestRepository = _reportRequestRepository ?? new ReportRequestRepository(_context);
 
 
         public void Dispose()
