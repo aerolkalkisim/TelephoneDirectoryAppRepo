@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using TelephoneDirectoryApp.Core.Exception.BusinessException;
 using TelephoneDirectoryApp.Data.Repository;
 using TelephoneDirectoryApp.Helper.Const;
@@ -64,6 +66,26 @@ namespace TelephoneDirectoryApp.Manager.WebManager
                     IsActive = true
 
                 });
+
+                var factory = new ConnectionFactory() { HostName = "127.0.0.1" };
+                using (var connection = factory.CreateConnection())
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(queue: "reportQueue",
+                                         durable: false,
+                                         exclusive: false,
+                                         autoDelete: false,
+                                         arguments: null);
+
+                    
+                    var body = Encoding.UTF8.GetBytes(result.Id.ToString());
+
+                    channel.BasicPublish(exchange: "",
+                                         routingKey: "reportQueue",
+                                         basicProperties: null,
+                                         body: body);
+
+                }
 
                 return true;
             }
