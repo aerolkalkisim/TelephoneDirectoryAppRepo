@@ -16,7 +16,8 @@ namespace TelephoneDirectoryApp.Model.Entity
         public string Value { get; set; }
         public bool IsActive { get; set; }
         public virtual Contact Contact { get; set; }
-        public virtual ContactInformationType Type { get; set; }
+        [ForeignKey("TypeId")]
+        public ContactInformationType ContactInformationType { get; set; }
 
 
     }

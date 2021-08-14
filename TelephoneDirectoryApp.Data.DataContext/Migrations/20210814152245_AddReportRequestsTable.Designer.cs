@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TelephoneDirectoryApp.Data.DataContext;
@@ -9,9 +10,10 @@ using TelephoneDirectoryApp.Data.DataContext;
 namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210814152245_AddReportRequestsTable")]
+    partial class AddReportRequestsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,27 +92,27 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9cfcc4d7-2f10-4444-9fc2-237e7083ca25"),
+                            Id = new Guid("550d492d-6fc0-46c2-b993-0937f09972e5"),
                             Name = "Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("e7a88065-3917-4658-ad9e-a7f667dd42d4"),
+                            Id = new Guid("68c7026d-d3a0-4f39-b724-473e221aaa44"),
                             Name = "Ev Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("ed2db277-af35-4e6c-a22f-99cbf5fa13d5"),
+                            Id = new Guid("fa1cdb89-a3f9-4154-bd86-284b12f10dd2"),
                             Name = "İşyeri Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("c90db09f-7f67-4574-9ac2-64a9e00a58a8"),
+                            Id = new Guid("8aba81e1-8539-4a02-ba02-655f9e6cd8a5"),
                             Name = "Email"
                         },
                         new
                         {
-                            Id = new Guid("2bf7e653-3f0a-45bc-a2a8-da2f8f7e10e8"),
+                            Id = new Guid("c19b73c3-1f0a-497f-bd7e-824a658480ce"),
                             Name = "Konum"
                         });
                 });
@@ -132,9 +134,6 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 
                     b.Property<bool>("Status")
                         .HasColumnType("boolean");
-
-                    b.Property<DateTime?>("StatusChangeDate")
-                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 

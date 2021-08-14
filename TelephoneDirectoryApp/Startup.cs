@@ -30,6 +30,7 @@ namespace TelephoneDirectoryApp
             // services.AddScoped<IContactInformationTypeRepository, ContactInformationTypeRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IContactManager, ContactManager>();
+            services.AddScoped<IReportManager, ReportManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

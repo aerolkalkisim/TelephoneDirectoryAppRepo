@@ -28,6 +28,7 @@ namespace TelephoneDirectoryApp.Manager.WebManager
         #region Contact
 
         public List<ContactWM> GetAllActiveContact() => new ContactMapping().MapToWMList(_allRepo.ContactRepository.Get(X=>X.IsActive==true));
+        public ContactWM GetContactById(Guid id) => new ContactMapping().MapToWM(_allRepo.ContactRepository.GetFirst(X=>X.Id== id));
 
 
         public bool AddContact(ContactWM model)
@@ -82,7 +83,8 @@ namespace TelephoneDirectoryApp.Manager.WebManager
         //ToDo: Detay getir ve detay ekle sil güncelle metotları eklenecek.
 
 
-        public List<ContactInformationWM> GetActiveContactInformationsByContactId(Guid ContactId) => new ContactMapping().MapToWMListForInformation(_allRepo.ContactInformationRepository.Get(X => X.IsActive == true && X.ContactId==ContactId).ToList());
+        public List<ContactInformationWM> GetActiveContactInformationsByContactId(Guid ContactId) => new ContactMapping().MapToWMListForInformation(_allRepo.ContactInformationRepository.GetContactInformationWithTypeByContactId(ContactId));
+        public ContactInformationWM GetContactInformationsByContactInfoId(Guid ContactInfoId) => new ContactMapping().MapToWMLForInformation(_allRepo.ContactInformationRepository.GetFirst(x=>x.Id==ContactInfoId));
 
         public bool AddContactInformation(ContactInformationWM model)
         {
@@ -103,7 +105,12 @@ namespace TelephoneDirectoryApp.Manager.WebManager
         {
             try
             {
-                var result = _allRepo.ContactInformationRepository.Update(new ContactMapping().MapToEnttiyForInformation(model));
+                var updatedContact = _allRepo.ContactInformationRepository.GetFirst(x => x.Id == model.Id);
+                updatedContact.TypeId = model.TypeId;
+                updatedContact.Value = model.Value;
+
+                //var result = _allRepo.ContactInformationRepository.Update(new ContactMapping().MapToEnttiyForInformation(model));
+                var result = _allRepo.ContactInformationRepository.Update(updatedContact);
                 return true;
             }
             catch (Exception ex)
@@ -136,6 +143,18 @@ namespace TelephoneDirectoryApp.Manager.WebManager
 
         #region Type
 
+        public List<ContactInformationTypeWM> GetAllActiveContactInfoType() {
+
+            return _allRepo.ContactInformationTypeRepository.Get().Select(x => new ContactInformationTypeWM
+            {
+                Id = x.Id,
+                Name = x.Name,
+
+            }).ToList();
+
+        } 
+
+
         public bool AddType(ContactInformationTypeWM model)
         {
             try
@@ -150,7 +169,6 @@ namespace TelephoneDirectoryApp.Manager.WebManager
             catch (Exception ex)
             {
                 throw new BusinessRuleException("Veritabanına kayıt sırasında hata oluştu.", "Contact Information Type kayıt edilirken hata meydana geldi.");
-
             }           
         }
 

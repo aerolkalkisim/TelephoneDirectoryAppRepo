@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TelephoneDirectoryApp.Data.DataContext;
@@ -9,9 +10,10 @@ using TelephoneDirectoryApp.Data.DataContext;
 namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210814130129_foreignkey3")]
+    partial class foreignkey3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,6 +53,9 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                     b.Property<Guid>("ContactId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("ContactInformationTypeId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
@@ -64,7 +69,7 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 
                     b.HasIndex("ContactId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("ContactInformationTypeId");
 
                     b.ToTable("ContactInformations");
                 });
@@ -75,70 +80,39 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ContactInformationTypeId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ContactInformationTypeId");
 
                     b.ToTable("ContactInformationType");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9cfcc4d7-2f10-4444-9fc2-237e7083ca25"),
+                            Id = new Guid("9d6b4f7c-b702-4c8b-b72e-24005d5a9744"),
                             Name = "Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("e7a88065-3917-4658-ad9e-a7f667dd42d4"),
+                            Id = new Guid("2e4d80d2-cff0-4539-85e9-7fdb711f4325"),
                             Name = "Ev Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("ed2db277-af35-4e6c-a22f-99cbf5fa13d5"),
+                            Id = new Guid("05257b07-ec1b-4def-8142-3f960b5f21c8"),
                             Name = "İşyeri Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("c90db09f-7f67-4574-9ac2-64a9e00a58a8"),
+                            Id = new Guid("7900137f-93f4-441c-ae60-dde217d4fead"),
                             Name = "Email"
                         },
                         new
                         {
-                            Id = new Guid("2bf7e653-3f0a-45bc-a2a8-da2f8f7e10e8"),
+                            Id = new Guid("5c6443d0-71f4-4310-827c-c9c9cdf7b7ae"),
                             Name = "Konum"
                         });
-                });
-
-            modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ReportRequest", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("RequestDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Result")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime?>("StatusChangeDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ReportRequests");
                 });
 
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformation", b =>
@@ -150,21 +124,12 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                         .IsRequired();
 
                     b.HasOne("TelephoneDirectoryApp.Model.Entity.ContactInformationType", "ContactInformationType")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("ContactInformations")
+                        .HasForeignKey("ContactInformationTypeId");
 
                     b.Navigation("Contact");
 
                     b.Navigation("ContactInformationType");
-                });
-
-            modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformationType", b =>
-                {
-                    b.HasOne("TelephoneDirectoryApp.Model.Entity.ContactInformationType", null)
-                        .WithMany("ContactInformationTypes")
-                        .HasForeignKey("ContactInformationTypeId");
                 });
 
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.Contact", b =>
@@ -174,7 +139,7 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformationType", b =>
                 {
-                    b.Navigation("ContactInformationTypes");
+                    b.Navigation("ContactInformations");
                 });
 #pragma warning restore 612, 618
         }

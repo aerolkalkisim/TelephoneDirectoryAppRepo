@@ -27,21 +27,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Data.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Model.Entity", "TelephoneDirectoryApp.Model.Entity\TelephoneDirectoryApp.Model.Entity.csproj", "{C24CA52E-73BF-4F03-AC2A-F0E5E4F0B6BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Core.Exception.Base", "TelephoneDirectoryApp.Core.Exception.Base\TelephoneDirectoryApp.Core.Exception.Base.csproj", "{882A58F7-8E3C-4B63-BC75-E3079AA82B3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Core.Exception.Base", "TelephoneDirectoryApp.Core.Exception.Base\TelephoneDirectoryApp.Core.Exception.Base.csproj", "{882A58F7-8E3C-4B63-BC75-E3079AA82B3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Core.Exception.BusinessException", "TelephoneDirectoryApp.Core.Exception.BusinessException\TelephoneDirectoryApp.Core.Exception.BusinessException.csproj", "{8E2380D2-7200-45B2-AA02-677AD17C5E9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Core.Exception.BusinessException", "TelephoneDirectoryApp.Core.Exception.BusinessException\TelephoneDirectoryApp.Core.Exception.BusinessException.csproj", "{8E2380D2-7200-45B2-AA02-677AD17C5E9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Core.Exception.DataException", "TelephoneDirectoryApp.Core.Exception.DataException\TelephoneDirectoryApp.Core.Exception.DataException.csproj", "{414C2235-D78C-4DD6-A173-97AE1EA3F379}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Core.Exception.DataException", "TelephoneDirectoryApp.Core.Exception.DataException\TelephoneDirectoryApp.Core.Exception.DataException.csproj", "{414C2235-D78C-4DD6-A173-97AE1EA3F379}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Data.Repository", "TelephoneDirectoryApp.Data.Repository\TelephoneDirectoryApp.Data.Repository.csproj", "{CF5DBE0D-BFD4-425B-801C-7EFF2EC9954F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Data.Repository", "TelephoneDirectoryApp.Data.Repository\TelephoneDirectoryApp.Data.Repository.csproj", "{CF5DBE0D-BFD4-425B-801C-7EFF2EC9954F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Helper.Const", "TelephoneDirectoryApp.Helper.Const\TelephoneDirectoryApp.Helper.Const.csproj", "{D842150F-0A1A-40FA-9FD1-EC3C871B9ACF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Helper.Const", "TelephoneDirectoryApp.Helper.Const\TelephoneDirectoryApp.Helper.Const.csproj", "{D842150F-0A1A-40FA-9FD1-EC3C871B9ACF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Model.WebModel", "TelephoneDirectoryApp.Model.WebModel\TelephoneDirectoryApp.Model.WebModel.csproj", "{8970CB2B-0F2E-494F-8A85-9A329BAC9355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Model.WebModel", "TelephoneDirectoryApp.Model.WebModel\TelephoneDirectoryApp.Model.WebModel.csproj", "{8970CB2B-0F2E-494F-8A85-9A329BAC9355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Manager.Mapped", "TelephoneDirectoryApp.Manager.Mapped\TelephoneDirectoryApp.Manager.Mapped.csproj", "{79243F28-35EC-4575-9D90-E2EE1276897E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Manager.Mapped", "TelephoneDirectoryApp.Manager.Mapped\TelephoneDirectoryApp.Manager.Mapped.csproj", "{79243F28-35EC-4575-9D90-E2EE1276897E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.Manager.WebManager", "TelephoneDirectoryApp.Manager.WebManager\TelephoneDirectoryApp.Manager.WebManager.csproj", "{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelephoneDirectoryApp.Manager.WebManager", "TelephoneDirectoryApp.Manager.WebManager\TelephoneDirectoryApp.Manager.WebManager.csproj", "{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelephoneDirectoryApp.MQ", "TelephoneDirectoryApp.MQ", "{B4608897-195A-4374-87A2-A1EA04FB0D08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelephoneDirectoryApp.MQ.Consumer", "TelephoneDirectoryApp.MQ.Consumer\TelephoneDirectoryApp.MQ.Consumer.csproj", "{A28D58DD-5695-4EF9-B608-178A4FE9FA4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +101,10 @@ Global
 		{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F48A39BF-B44A-4C76-8647-80B0D56ABDAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A28D58DD-5695-4EF9-B608-178A4FE9FA4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A28D58DD-5695-4EF9-B608-178A4FE9FA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A28D58DD-5695-4EF9-B608-178A4FE9FA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A28D58DD-5695-4EF9-B608-178A4FE9FA4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +124,7 @@ Global
 		{8970CB2B-0F2E-494F-8A85-9A329BAC9355} = {BD04343D-291C-45F7-843E-D790E5F18C2E}
 		{79243F28-35EC-4575-9D90-E2EE1276897E} = {D30EACA0-03FF-45A0-B280-B6914CBC3CC4}
 		{F48A39BF-B44A-4C76-8647-80B0D56ABDAA} = {D30EACA0-03FF-45A0-B280-B6914CBC3CC4}
+		{A28D58DD-5695-4EF9-B608-178A4FE9FA4C} = {B4608897-195A-4374-87A2-A1EA04FB0D08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7813D44-0758-4078-8D41-F6834B19B969}

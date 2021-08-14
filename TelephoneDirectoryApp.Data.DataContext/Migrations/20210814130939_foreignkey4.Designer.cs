@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TelephoneDirectoryApp.Data.DataContext;
@@ -9,9 +10,10 @@ using TelephoneDirectoryApp.Data.DataContext;
 namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210814130939_foreignkey4")]
+    partial class foreignkey4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,6 +53,9 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                     b.Property<Guid>("ContactId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("ContactInformationTypeId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
@@ -64,7 +69,7 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 
                     b.HasIndex("ContactId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("ContactInformationTypeId");
 
                     b.ToTable("ContactInformations");
                 });
@@ -75,70 +80,44 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ContactInformationTypeId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("TypeId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ContactInformationTypeId");
+                    b.HasIndex("TypeId");
 
                     b.ToTable("ContactInformationType");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9cfcc4d7-2f10-4444-9fc2-237e7083ca25"),
+                            Id = new Guid("7132384e-d1c4-4073-b8ff-47b693325b7e"),
                             Name = "Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("e7a88065-3917-4658-ad9e-a7f667dd42d4"),
+                            Id = new Guid("907701fe-059c-4550-9e93-bebd4bbc7570"),
                             Name = "Ev Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("ed2db277-af35-4e6c-a22f-99cbf5fa13d5"),
+                            Id = new Guid("7111d69e-8eaa-472b-b537-27853d0d999f"),
                             Name = "İşyeri Telefon Numarası"
                         },
                         new
                         {
-                            Id = new Guid("c90db09f-7f67-4574-9ac2-64a9e00a58a8"),
+                            Id = new Guid("e75ea07c-eacb-43b9-b6ad-5c8c7bb9a40b"),
                             Name = "Email"
                         },
                         new
                         {
-                            Id = new Guid("2bf7e653-3f0a-45bc-a2a8-da2f8f7e10e8"),
+                            Id = new Guid("0e189838-8781-46f3-bbed-07007abe67df"),
                             Name = "Konum"
                         });
-                });
-
-            modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ReportRequest", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("RequestDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Result")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime?>("StatusChangeDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ReportRequests");
                 });
 
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformation", b =>
@@ -151,9 +130,7 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 
                     b.HasOne("TelephoneDirectoryApp.Model.Entity.ContactInformationType", "ContactInformationType")
                         .WithMany()
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ContactInformationTypeId");
 
                     b.Navigation("Contact");
 
@@ -163,8 +140,8 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformationType", b =>
                 {
                     b.HasOne("TelephoneDirectoryApp.Model.Entity.ContactInformationType", null)
-                        .WithMany("ContactInformationTypes")
-                        .HasForeignKey("ContactInformationTypeId");
+                        .WithMany("Students")
+                        .HasForeignKey("TypeId");
                 });
 
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.Contact", b =>
@@ -174,7 +151,7 @@ namespace TelephoneDirectoryApp.Data.DataContext.Migrations
 
             modelBuilder.Entity("TelephoneDirectoryApp.Model.Entity.ContactInformationType", b =>
                 {
-                    b.Navigation("ContactInformationTypes");
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

@@ -28,5 +28,7 @@ namespace TelephoneDirectoryApp.Model.Entity
 
         public virtual ICollection<ContactInformation> ContactInformations { get; set; }
 
+        //Not: createdate, updateddate eklenebilir
+
     }
 }

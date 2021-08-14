@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TelephoneDirectoryApp.Core.Exception.BusinessException\TelephoneDirectoryApp.Core.Exception.BusinessException.csproj" />
     <ProjectReference Include="..\TelephoneDirectoryApp.Data.Repository\TelephoneDirectoryApp.Data.Repository.csproj" />
     <ProjectReference Include="..\TelephoneDirectoryApp.Manager.Mapped\TelephoneDirectoryApp.Manager.Mapped.csproj" />
